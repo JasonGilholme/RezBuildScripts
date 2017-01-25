@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 # ------------------------------------------------------------------------------
 # python has been successfully built on:
@@ -31,8 +33,6 @@ rez_set_archive(
     http://www.python.org/ftp/python/${python_version}/Python-${python_version}.tgz
 )
 
-set(make_args -j$ENV{REZ_BUILD_THREAD_COUNT} VERBOSE=1)
-
 if(${REZ_BUILD_INSTALL})
     set(install_cmd make install ${make_args})
 else()
@@ -47,5 +47,5 @@ ExternalProject_add(
     CONFIGURE_COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX} --enable-shared --enable-ipv6 --enable-unicode=ucs4
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make ${make_args}
+    BUILD_COMMAND make -j ${ncpus}
 )

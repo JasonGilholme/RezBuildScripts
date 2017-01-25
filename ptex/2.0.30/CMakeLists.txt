@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 set(ptex_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
@@ -19,5 +21,5 @@ ExternalProject_add(
     CONFIGURE_COMMAND ""
     INSTALL_COMMAND ""
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -C src INSTALLDIR=${CMAKE_INSTALL_PREFIX}
+    BUILD_COMMAND make -j ${ncpus} -C src INSTALLDIR=${CMAKE_INSTALL_PREFIX}
 )

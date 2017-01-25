@@ -3,7 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
-
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 set(glew_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
@@ -26,5 +27,5 @@ ExternalProject_add(
     CONFIGURE_COMMAND ""
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j16 GLEW_DEST=${CMAKE_INSTALL_PREFIX}
+    BUILD_COMMAND make -j ${ncpus} GLEW_DEST=${CMAKE_INSTALL_PREFIX}
 )

@@ -6,12 +6,13 @@ include(ExternalProject)
 include(ProcessorCount)
 ProcessorCount(ncpus)
 
-set(glfw_version $ENV{REZ_BUILD_PROJECT_VERSION})
+set(gsl_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
 rez_set_archive(
-    url_glfw glfw/${glfw_version}.tar.gz
-    https://github.com/glfw/glfw/archive/${glfw_version}.tar.gz
+    url_gsl gsl/gsl-${gsl_version}.tar.gz
+    ftp://ftp.gnu.org/gnu/gsl/gsl-2.3.tar.gz
 )
+
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd make install)
@@ -20,11 +21,11 @@ else()
 endif()
 
 ExternalProject_add(
-    glfw
-    URL ${url_glfw}
-    PREFIX glfw
+    gsl
+    URL ${url_gsl}
+    PREFIX gsl
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND cmake -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DBUILD_SHARED_LIBS=ON
+    CONFIGURE_COMMAND ./configure --exec-prefix=${CMAKE_INSTALL_PREFIX} --prefix=${CMAKE_INSTALL_PREFIX}
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}

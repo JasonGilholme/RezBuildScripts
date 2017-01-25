@@ -11,9 +11,7 @@ description = \
     Peer-reviewed portable C++ source libraries.
     """
 
-build_requires = [
-    # "gcc-4.8.2"
-]
+build_requires = []
 
 variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04", "python-2.7"]

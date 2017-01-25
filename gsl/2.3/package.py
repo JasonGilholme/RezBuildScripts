@@ -1,14 +1,12 @@
-name = "googletest"
+name = "gsl"
 
-version = "1.8.0"
+version = "2.3"
 
-authors = [
-    "Google"
-]
+authors = []
 
 description = \
     """
-    Googles C++ testing framework
+    GNU Scientific Library
     """
 
 build_requires = []
@@ -17,8 +15,8 @@ variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04"]
 ]
 
-uuid = "repository.googletest"
+uuid = "repository.gsl"
 
 def commands():
     env.LD_LIBRARY_PATH.append("{root}/lib")
-    env.GOOGLETEST_INCLUDE_DIR = "{root}/include"
+    env.GSL_INCLUDE_DIR = "{root}/include"

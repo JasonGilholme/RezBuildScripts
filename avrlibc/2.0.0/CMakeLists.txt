@@ -6,12 +6,13 @@ include(ExternalProject)
 include(ProcessorCount)
 ProcessorCount(ncpus)
 
-set(glfw_version $ENV{REZ_BUILD_PROJECT_VERSION})
+set(avrlibc_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
 rez_set_archive(
-    url_glfw glfw/${glfw_version}.tar.gz
-    https://github.com/glfw/glfw/archive/${glfw_version}.tar.gz
+    url_avrlibc avrlibc/avr-libc-${avrlibc_version}.tar.bz2
+    http://download.savannah.gnu.org/releases/avr-libc/avr-libc-${avrlibc_version}.tar.bz2
 )
+
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd make install)
@@ -20,11 +21,11 @@ else()
 endif()
 
 ExternalProject_add(
-    glfw
-    URL ${url_glfw}
-    PREFIX glfw
+    avrlibc
+    URL ${url_avrlibc}
+    PREFIX avrlibc
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND cmake -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} -DBUILD_SHARED_LIBS=ON
+    CONFIGURE_COMMAND ./configure --host=avr --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX}
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}

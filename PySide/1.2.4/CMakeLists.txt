@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 set(pyside_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
@@ -26,6 +28,6 @@ ExternalProject_add(
     CONFIGURE_COMMAND cmake
     -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j 4
+    BUILD_COMMAND make -j ${ncpus}
     INSTALL_COMMAND "${install_cmd}"
 )

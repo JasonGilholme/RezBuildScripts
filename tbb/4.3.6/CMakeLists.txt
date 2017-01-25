@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 set(tbb_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
@@ -19,7 +21,7 @@ ExternalProject_add(
     CONFIGURE_COMMAND ""
     INSTALL_COMMAND ""
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j$ENV{REZ_BUILD_THREAD_COUNT} VERBOSE=1
+    BUILD_COMMAND make -j ${ncpus}
 )
 
 ExternalProject_Get_Property(tbb SOURCE_DIR)
