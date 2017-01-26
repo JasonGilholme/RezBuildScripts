@@ -1,4 +1,4 @@
-name = "usd"
+name = "usd_maya"
 
 version = "0.7.2.0"
 
@@ -12,8 +12,10 @@ description = \
     """
 
 requires = [
+    "app_maya-2017",
+    
     "boost-1.55",
-    "tbb-4.3",
+    #"tbb-4.3",
     "double_conversion-1.1",
     "openexr-2.2",
     "oiio-1.5",
@@ -21,8 +23,8 @@ requires = [
     "opensubdiv-3",
     "ptex-2.0",
     "PyOpenGL-3",
-    "PySide",
-    "PySideTools",
+    #"PySide",
+    #"PySideTools",
 ]
 
 build_requires = [
@@ -33,7 +35,7 @@ variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04"]
 ]
 
-uuid = "usd"
+uuid = "usd_maya"
 
 def commands():
     env.PATH.append("{root}/bin")

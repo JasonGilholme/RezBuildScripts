@@ -43,6 +43,8 @@ ExternalProject_add(
     # gf libs mising OpenEXR namespace on includes
     #include_directories($ENV{REZ_ILMBASE_ROOT}/include/OpenEXR)
 
+    #-DCMAKE_PREFIX_PATH=$ENV{REZ_ILMBASE_ROOT}/include/OpenEXR
+
     # OPENIMAGEIO
     -DOIIO_BASE_DIR=$ENV{REZ_OIIO_ROOT}
 
@@ -58,5 +60,5 @@ ExternalProject_add(
 
     ${CMAKE_SOURCE_DIR}/../source/USD/
 
-    BUILD_COMMAND make -j8
+    BUILD_COMMAND make -j3
 )

@@ -23,11 +23,8 @@ ExternalProject_add(
     -DBOOST_ROOT=$ENV{REZ_BOOST_ROOT}
 
     # TBB
-    -DTBB_ROOT_DIR=$ENV{REZ_TBB_ROOT}
-    -DTBB_tbb_LIBRARY_DEBUG=$ENV{REZ_TBB_ROOT}/lib/debug/
-    -DTBB_tbb_LIBRARY_RELEASE=$ENV{REZ_TBB_ROOT}/lib/release/
-    -DTBB_tbb_LIBRARY_DEBUG=$ENV{REZ_TBB_ROOT}/lib/debug/libtbb.so
-    -DTBB_tbb_LIBRARY_RELEASE=$ENV{REZ_TBB_ROOT}/lib/release/libtbb.so
+    -DTBB_INCLUDE_DIRS=$ENV{REZ_APP_MAYA_ROOT}/ext/include
+    -DTBB_tbb_LIBRARY_DEBUG=$ENV{REZ_APP_MAYA_ROOT}/ext/lib/libtbb.so
 
     # DOUBLE CONVERSION
     -DDOUBLE_CONVERSION_INCLUDE_DIR=$ENV{REZ_DOUBLE_CONVERSION_ROOT}/include
@@ -56,7 +53,11 @@ ExternalProject_add(
     # PTEX
     -DPTEX_LOCATION=$ENV{REZ_PTEX_ROOT} 
 
+    # MAYA
+    -DPXR_BUILD_MAYA_PLUGIN=ON
+    -DMAYA_LOCATION=$ENV{REZ_APP_MAYA_ROOT}/ext
+
     ${CMAKE_SOURCE_DIR}/../source/USD/
 
-    BUILD_COMMAND make -j8
+    BUILD_COMMAND make -j4
 )
