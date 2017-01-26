@@ -19,6 +19,5 @@ variants = [
 uuid = "repository.qt"
 
 def commands():
-	pass
-    #env.LD_LIBRARY_PATH.append("{root}/lib")
-    #env.DOUBLE_CONVERSION_INCLUDE_DIR = "{root}/include"
+    env.LD_LIBRARY_PATH.append("{root}/lib")
+    env.PATH.append("{root}/bin")
