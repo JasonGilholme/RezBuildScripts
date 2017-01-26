@@ -26,8 +26,9 @@ ExternalProject_add(
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND cmake
     -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
-    -DQT_ROOT=${REZ_QT_ROOT}
-    BUILD_IN_SOURCE 1
+    -DQT_ROOT=${REZ_QT_ROOT} ../shiboken
+    BUILD_IN_SOURCE 0
+    #BINARY_DIR ${CMAKE_INSTALL_PREFIX}
     BUILD_COMMAND make -j ${ncpus}
     INSTALL_COMMAND "${install_cmd}"
 )
