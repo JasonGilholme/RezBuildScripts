@@ -1,6 +1,6 @@
-name = "PySide"
+name = "PySideTools"
 
-version = "1.2.4"
+version = "0.2.15"
 
 authors = [
     ""
@@ -12,11 +12,9 @@ description = \
     """
 
 requires = [
-	"qt-4.8.6",
-	"pip",
-	"setuptools",
-	"shiboken"
-]
+    "shiboken-1.2",
+    "PySide-1.2"
+]   
 
 build_requires = []
 
@@ -24,8 +22,8 @@ variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04", "python-2.7"]
 ]
 
-uuid = "repository.PySide"
+uuid = "repository.PySideTools"
 
 def commands():
-    env.LD_LIBRARY_PATH.append('{root}/lib')
+    env.PATH.append('{root}/bin')
     env.PYTHONPATH.append('{root}/lib/python2.7/site-packages')
