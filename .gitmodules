@@ -1,4 +1,0 @@
-[submodule "usd/source/USD"]
-	path = usd/source/USD
-	url = git@github.com:JasonGilholme/USD.git
-	branch = dev
