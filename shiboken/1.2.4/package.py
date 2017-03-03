@@ -18,7 +18,7 @@ requires = [
 build_requires = []
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04", "python-2.7"]
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04", "python-2.7"]
 ]
 
 uuid = "repository.shiboken"

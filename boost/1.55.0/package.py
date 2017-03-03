@@ -14,11 +14,14 @@ description = \
 build_requires = []
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04", "python-2.7"]
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04", "python-2.7"]
 ]
 
 uuid = "repository.boost"
 
 def commands():
     env.LD_LIBRARY_PATH.append("{root}/lib")
-    env.BOOST_INCLUDE_DIR = "{root}/include"
+
+    # cmake FindPackage env vars
+    env.BOOST_ROOT = "{root}"
+    env.BOOST_INCLUDEDIR = "{root}/include"

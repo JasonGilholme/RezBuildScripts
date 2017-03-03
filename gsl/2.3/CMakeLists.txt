@@ -28,5 +28,5 @@ ExternalProject_add(
     CONFIGURE_COMMAND ./configure --exec-prefix=${CMAKE_INSTALL_PREFIX} --prefix=${CMAKE_INSTALL_PREFIX}
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j ${ncpus}
+    BUILD_COMMAND make -j 28
 )

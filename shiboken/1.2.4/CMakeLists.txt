@@ -10,7 +10,7 @@ set(shiboken_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
 rez_set_archive(
     url_shiboken shiboken/${shiboken_version}.tar.gz
-    https://github.com/shiboken/shiboken/archive/${shiboken_version}.tar.gz
+    https://github.com/pyside/Shiboken/archive/${shiboken_version}.tar.gz
 )
 
 if(${REZ_BUILD_INSTALL})

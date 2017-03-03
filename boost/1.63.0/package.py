@@ -1,6 +1,6 @@
 name = "boost"
 
-version = "1.55.0"
+version = "1.63.0"
 
 authors = [
     "boost.org"

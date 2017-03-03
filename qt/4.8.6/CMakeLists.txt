@@ -27,5 +27,5 @@ ExternalProject_add(
     CONFIGURE_COMMAND ./configure -confirm-license -opensource -no-qt3support -opengl -no-rpath -ptmalloc -optimized-qmake -fast --prefix=${CMAKE_INSTALL_PREFIX}
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j ${ncpus}
+    BUILD_COMMAND make -j 28
 )

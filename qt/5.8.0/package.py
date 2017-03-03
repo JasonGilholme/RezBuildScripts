@@ -1,6 +1,6 @@
 name = "qt"
 
-version = "4.8.6"
+version = "5.8.0"
 
 authors = [
     ""

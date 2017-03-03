@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 include(RezBuild)
 include(RezRepository)
 include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
 
 set(boost_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
@@ -11,7 +13,7 @@ rez_set_archive(
     http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz
 )
 
-set(b2_args -s NO_BZIP2=1 --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=static link=shared --toolset=gcc cxxflags=-fPIC)
+set(b2_args -j ${ncpus} -q -s NO_BZIP2=1 --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=shared --toolset=gcc cxxflags=-std=c++11)
 
 if(${REZ_BUILD_INSTALL})
     set(install_cmd ./b2 install ${b2_args})

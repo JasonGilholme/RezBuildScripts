@@ -10,7 +10,7 @@ set(qt_version $ENV{REZ_BUILD_PROJECT_VERSION})
 
 rez_set_archive(
     url_qt qt/qt-everywhere-opensource-src-${qt_version}.tar.gz
-    https://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
+    https://download.qt.io/archive/qt/5.8/5.8.0/qt-everywhere-opensource-src-5.8.0.tar.gz
 )
 
 if(${REZ_BUILD_INSTALL})
@@ -24,7 +24,7 @@ ExternalProject_add(
     URL ${url_qt}
     PREFIX qt
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ./configure -confirm-license -opensource -no-qt3support -opengl -no-rpath -ptmalloc -optimized-qmake -fast --prefix=${CMAKE_INSTALL_PREFIX}
+    CONFIGURE_COMMAND ./configure -confirm-license -opensource -opengl -prefix ${CMAKE_INSTALL_PREFIX}
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j 28

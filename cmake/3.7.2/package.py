@@ -1,14 +1,14 @@
-name = "googletest"
+name = "cmake"
 
-version = "1.8.0"
+version = "3.7.2"
 
 authors = [
-    "Google"
+    "Kitware"
 ]
 
 description = \
     """
-    Googles C++ testing framework
+    Cross platform build system
     """
 
 build_requires = []
@@ -17,8 +17,7 @@ variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]
 ]
 
-uuid = "repository.googletest"
+uuid = "repository.cmake"
 
 def commands():
-    env.LD_LIBRARY_PATH.append("{root}/lib")
-    env.GOOGLETEST_INCLUDE_DIR = "{root}/include"
+    env.PATH.append("{root}/bin")
