@@ -22,3 +22,6 @@ uuid = "repository.googletest"
 def commands():
     env.LD_LIBRARY_PATH.append("{root}/lib")
     env.GOOGLETEST_INCLUDE_DIR = "{root}/include"
+
+    # CMake FindPackage Var
+    env.GTEST_ROOT = "{root}"
