@@ -1,6 +1,6 @@
 name = "oiio"
 
-version = "1.5.24"
+version = "1.7.11"
 
 authors = [
     "Larry Gritz"
