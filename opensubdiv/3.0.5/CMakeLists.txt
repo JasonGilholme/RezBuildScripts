@@ -14,7 +14,7 @@ rez_set_archive(
 )
 
 if(${REZ_BUILD_INSTALL})
-    set(install_cmd make install)
+    set(install_cmd ninja install)
 else()
     set(install_cmd "")
 endif()
@@ -24,7 +24,8 @@ ExternalProject_add(
     URL ${url_opensubdiv}
     PREFIX opensubdiv
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND cmake 
+    CONFIGURE_COMMAND cmake
+    -GNinja
     -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
     
     -DTBB_INCLUDE_DIR=$ENV{TBB_INCLUDE_DIR}
@@ -38,5 +39,5 @@ ExternalProject_add(
 
     INSTALL_COMMAND "${install_cmd}"
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND make -j ${ncpus}
+    BUILD_COMMAND ninja
 )

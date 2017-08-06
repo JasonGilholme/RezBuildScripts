@@ -16,7 +16,7 @@ requires = [
     "boost-1.56+"
 ]
 
-build_requires = []
+build_requires = ["ninja"]
 
 variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]

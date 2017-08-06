@@ -11,7 +11,7 @@ description = \
     GL 
     """
 
-build_requires = []
+build_requires = ["ninja"]
 
 variants = [
     ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]
