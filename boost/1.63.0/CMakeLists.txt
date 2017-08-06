@@ -13,10 +13,8 @@ rez_set_archive(
     http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.tar.gz
 )
 
-set(b2_args -j ${ncpus} -q -s NO_BZIP2=1 --prefix=${CMAKE_INSTALL_PREFIX} --exec-prefix=${CMAKE_INSTALL_PREFIX} link=shared --toolset=gcc cxxflags=-std=c++11)
-
 if(${REZ_BUILD_INSTALL})
-    set(install_cmd ./b2 install ${b2_args})
+    set(install_cmd install)
 else()
     set(install_cmd "")
 endif()
@@ -27,7 +25,27 @@ ExternalProject_add(
     PREFIX boost
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ./bootstrap.sh
-    INSTALL_COMMAND "${install_cmd}"
+    INSTALL_COMMAND ""
     BUILD_IN_SOURCE 1
-    BUILD_COMMAND ./b2 ${b2_args}
+    BUILD_COMMAND ./b2
+
+     -q             # quits on first error
+     -a             # always rebuilds targets
+     -d1            # useful output verbosity
+     -j ${ncpus}    # n jobs
+
+     --prefix=${CMAKE_INSTALL_PREFIX}
+     --exec-prefix=${CMAKE_INSTALL_PREFIX}
+     --toolset=gcc
+
+     link=static            # only produce static libs
+     runtime-link=static    # link to static runtime lib
+     variant=release        # create a release build
+
+     cxxflags=-std=c++11    # we want to conform to c++11
+     cxxflags=-fPIC         # position independent code
+     cxxflags=-w            # don't show warnings
+
+     ${install_cmd}
+
 )
