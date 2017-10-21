@@ -19,18 +19,7 @@ ExternalProject_add(
     PREFIX tbb
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ""
-    INSTALL_COMMAND ""
+    INSTALL_COMMAND python ${CMAKE_CURRENT_LIST_DIR}/install.py ./ ${CMAKE_INSTALL_PREFIX}
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j ${ncpus}
-)
-
-ExternalProject_Get_Property(tbb SOURCE_DIR)
-
-install(
-    CODE
-    # tbb doesn't have a 'make install' target, we have to provide it
-    "execute_process(
-        COMMAND python install.py ${SOURCE_DIR} ${CMAKE_INSTALL_PREFIX}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    )"
 )
