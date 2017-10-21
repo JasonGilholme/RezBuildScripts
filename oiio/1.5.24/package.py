@@ -16,11 +16,12 @@ build_requires = []
 requires = [
 	"openexr-2.2",
 	"glew-1",
-	"boost-1.63"
+	"boost-1.55"
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"],
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-17.04"]
 ]
 
 uuid = "repository.oiio"

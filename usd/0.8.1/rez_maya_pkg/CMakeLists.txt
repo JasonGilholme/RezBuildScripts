@@ -2,16 +2,27 @@ project(usd_maya)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
+include(RezBuild)
+include(RezRepository)
 include(ExternalProject)
+
+set(usd_version $ENV{REZ_BUILD_PROJECT_VERSION})
+
+rez_set_archive(
+    url_usd usd/v${usd_version}.tar.gz
+    https://github.com/PixarAnimationStudios/USD/archive/v0.8.1.tar.gz
+)
 
 
 ExternalProject_add(
     usd_maya
-    PREFIX usd_maya
 
-    DOWNLOAD_COMMAND ""
+    PREFIX usd_maya
+    URL ${url_usd}
 
     CONFIGURE_COMMAND cmake
+
+    -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
 
     # CCACHE
     -DCMAKE_CXX_COMPILER=ccache
@@ -57,7 +68,9 @@ ExternalProject_add(
     -DPXR_BUILD_MAYA_PLUGIN=ON
     -DMAYA_LOCATION=$ENV{REZ_APP_MAYA_ROOT}/ext
 
-    ${CMAKE_SOURCE_DIR}/../source/USD/
+    #${CMAKE_SOURCE_DIR}/../source/USD/
+
+    BUILD_IN_SOURCE 1
 
     BUILD_COMMAND make -j4
 )

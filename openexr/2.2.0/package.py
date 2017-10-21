@@ -20,7 +20,8 @@ build_requires = [
 ]
 
 variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"],
+    ["platform-linux", "arch-x86_64", "os-Ubuntu-17.04"]
 ]
 
 tools = [
@@ -36,6 +37,9 @@ tools = [
 uuid = "repository.openexr"
 
 def commands():
+    env.REZ_ILMBASE_ROOT = "{root}"
+    env.ILMBASE_INCLUDE_DIR = "{root}/include"
+
     env.PATH.append("{root}/bin")
     env.LD_LIBRARY_PATH.append("{root}/lib")
     env.PKG_CONFIG_PATH.append("{root}/lib/pkgconfig")
