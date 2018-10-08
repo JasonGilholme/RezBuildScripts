@@ -1,0 +1,27 @@
+FROM centos:7
+
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y centos-release-scl
+RUN yum install -y devtoolset-6-gcc*
+RUN scl enable devtoolset-6 bash
+# which gcc
+# gcc --version
+
+RUN yum install -y zlib-devel readline-devel ncurses-devel openssl-devel gdbm-devel sqlite-devel bzip2-devel
+
+
+RUN yum install -y wget
+RUN wget https://cmake.org/files/v3.12/cmake-3.12.3-Linux-x86_64.sh
+RUN chmod +x cmake-3.12.3-Linux-x86_64.sh
+RUN mkdir /opt/cmake
+RUN /cmake-3.12.3-Linux-x86_64.sh --skip-license --prefix=/opt/cmake
+ENV CMAKE_ROOT=/cmake
+
+
+# TODO: .bashrc for PATH and devtoolset-6 init
+
+RUN yum install -y freeglut-devel
+RUN yum install -y xcb-util-*
+
+COPY ./build_script.sh /build_script.sh
+ENTRYPOINT /build_script.sh
