@@ -1,0 +1,27 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+project(Project)
+
+include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
+
+ExternalProject_add(
+    python
+    URL $ENV{CMAKE_URL}
+    DOWNLOAD_DIR $ENV{CMAKE_DOWNLOAD_DIR}
+    PREFIX python
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ./configure 
+        --prefix=${CMAKE_INSTALL_PREFIX}
+        # --enable-optimizations
+        --enable-shared 
+        --enable-ipv6 
+        --enable-unicode=ucs4
+    INSTALL_COMMAND make install
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND make -j ${ncpus}
+)
+
+install(CODE "")
+

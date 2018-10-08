@@ -1,0 +1,27 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+project(Project)
+
+include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
+
+ExternalProject_add(
+    qt
+    URL $ENV{CMAKE_URL}
+    DOWNLOAD_DIR $ENV{CMAKE_DOWNLOAD_DIR}
+    PREFIX qt
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ./configure 
+        -confirm-license 
+        -opensource
+        -opengl
+        -no-openssl
+        -prefix ${CMAKE_INSTALL_PREFIX}
+    INSTALL_COMMAND make install
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND make -j ${ncpus}
+)
+
+install(CODE "")
+

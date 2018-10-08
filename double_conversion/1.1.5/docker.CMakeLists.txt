@@ -1,0 +1,24 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+project(Project)
+
+include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
+
+ExternalProject_add(
+    double_conversion
+    URL $ENV{CMAKE_URL}
+    DOWNLOAD_DIR $ENV{CMAKE_DOWNLOAD_DIR}
+    PREFIX double_conversion
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND cmake 
+        -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX} 
+        -DBUILD_SHARED_LIBS=OFF
+    INSTALL_COMMAND make install
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND make -j ${ncpus}
+)
+
+install(CODE "")
+
