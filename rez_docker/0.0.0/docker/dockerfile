@@ -23,5 +23,7 @@ ENV CMAKE_ROOT=/cmake
 RUN yum install -y freeglut-devel
 RUN yum install -y xcb-util-*
 
+RUN yum install -y which
+
 COPY ./build_script.sh /build_script.sh
 ENTRYPOINT /build_script.sh

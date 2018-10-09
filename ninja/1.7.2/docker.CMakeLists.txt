@@ -1,0 +1,21 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+project(Project)
+
+include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
+
+ExternalProject_add(
+    ninja
+    URL $ENV{CMAKE_URL}
+    DOWNLOAD_DIR $ENV{CMAKE_DOWNLOAD_DIR}
+    PREFIX ninja
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ""
+    INSTALL_COMMAND mkdir ${CMAKE_INSTALL_PREFIX}/bin && cp ninja ${CMAKE_INSTALL_PREFIX}/bin/
+    BUILD_COMMAND ../ninja/configure.py --bootstrap
+)
+
+install(CODE "")
+

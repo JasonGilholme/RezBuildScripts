@@ -10,7 +10,7 @@ description = \
     """
     """
 
-build_requires = []
+private_build_requires = ['rez_docker']
 
 @early()
 def variants():

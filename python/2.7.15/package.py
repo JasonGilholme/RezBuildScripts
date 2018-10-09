@@ -1,6 +1,6 @@
 name = "python"
 
-version = "2.7.15"
+version = "2.7.15.0"
 
 authors = [
     "Guido van Rossum"
@@ -11,6 +11,7 @@ description = \
     The Python programming language.
     """
 
+private_build_requires = ['rez_docker']
 
 @early()
 def variants():

@@ -11,12 +11,13 @@ description = \
     Lightweight build system
     """
 
-build_requires = []
+build_requires = ['rez_docker']
 
-variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"],
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-17.04"]
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "arch-**"]
+    return [expand_requires(*requires)]
 
 uuid = "repository.ninja"
 
