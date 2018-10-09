@@ -10,12 +10,10 @@ description = \
     """
     """
 
-private_build_requires = ['rez_docker']
-
 @early()
 def variants():
     from rez.package_py_utils import expand_requires
-    requires = ["platform-**", "arch-**"]
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
     return [expand_requires(*requires)]
 
 uuid = "repository.qt"

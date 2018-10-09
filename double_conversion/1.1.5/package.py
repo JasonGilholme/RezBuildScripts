@@ -11,12 +11,10 @@ description = \
     Efficient binary-decimal and decimal-binary conversion routines for IEEE doubles.
     """
 
-build_requires = [] 
-
 @early()
 def variants():
     from rez.package_py_utils import expand_requires
-    requires = ["platform-**", "arch-**", "os-**"]
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
     return [expand_requires(*requires)]
 
 uuid = "repository.double_conversion"

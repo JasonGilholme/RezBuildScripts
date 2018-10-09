@@ -47,22 +47,18 @@ def build(package_name, remote_source_archive_url, cmake_file, install_dir, rez_
     cmd += "-v %s:/rez_context.sh " % (os.environ['REZ_CONTEXT_FILE'],)
 
     # The docker image to run
-    cmd += "rez_build"
-
+    cmd += "vfx_platform:2018"
     print '[BUILD CMD]', cmd
     cmd = cmd.split()
-
 
     #
     # Run the subprocess
     #
-    print '[BUILD CMD]', cmd
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     while True:
         output = proc.stdout.readline()
         if output == '' and proc.poll() is not None:
-            print 'hit this bit??'
             break
         if output:
             print output.strip()

@@ -1,12 +1,8 @@
 #!/bin/bash
 
-echo "source rez context"
 source /rez_context.sh 
-echo "done with that"
 export PATH=$PATH:/opt/cmake/bin
-
 source /opt/rh/devtoolset-6/enable
-
 
 echo Running build in docker container!
 echo =========================

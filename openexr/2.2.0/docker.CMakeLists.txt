@@ -1,0 +1,26 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+project(Project)
+
+include(ExternalProject)
+include(ProcessorCount)
+ProcessorCount(ncpus)
+
+ExternalProject_add(
+    ilmbase
+    URL $ENV{CMAKE_URL}
+    DOWNLOAD_DIR $ENV{CMAKE_DOWNLOAD_DIR}
+    PREFIX ilmbase
+    UPDATE_COMMAND ""
+    CONFIGURE_COMMAND ./configure 
+        --prefix=${CMAKE_INSTALL_PREFIX} 
+        --with-pic 
+        --disable-debug 
+        --enable-shared=no
+    INSTALL_COMMAND make install
+    BUILD_IN_SOURCE 1
+    BUILD_COMMAND make -j ${ncpus}
+)
+
+install(CODE "")
+

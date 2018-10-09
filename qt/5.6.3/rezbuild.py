@@ -1,6 +1,6 @@
 import os
 
-import rez_docker
+import vfx_platform
 
 
 def build(source_path, build_path, install_path, targets):
@@ -12,7 +12,7 @@ def build(source_path, build_path, install_path, targets):
     )
     cmake_file = '%s/docker.CMakeLists.txt' % (os.environ['REZ_BUILD_SOURCE_PATH'],)
 
-    rez_docker.build(
+    vfx_platform.build(
         project_name,
         remote_source_archive_url,
         cmake_file,

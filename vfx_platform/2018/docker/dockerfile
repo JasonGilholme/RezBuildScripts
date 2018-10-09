@@ -4,8 +4,6 @@ RUN yum groupinstall -y "Development Tools"
 RUN yum install -y centos-release-scl
 RUN yum install -y devtoolset-6-gcc*
 RUN scl enable devtoolset-6 bash
-# which gcc
-# gcc --version
 
 RUN yum install -y zlib-devel readline-devel ncurses-devel openssl-devel gdbm-devel sqlite-devel bzip2-devel
 

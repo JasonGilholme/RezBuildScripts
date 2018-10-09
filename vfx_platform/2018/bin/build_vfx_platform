@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+cd $(dirname $0)/../docker
+
+docker build -f ./dockerfile -t vfx_platform:2018 ./
+

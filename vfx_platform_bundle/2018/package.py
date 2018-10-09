@@ -1,6 +1,6 @@
-name = "vfx_reference_platform"
+name = "vfx_platform_bundle"
 
-version = "2015"
+version = "2018"
 
 authors = [
     "www.vfxplatform.com"
@@ -12,10 +12,11 @@ description = \
     """
 
 requires = [
+    "~vfx_platform-2018",
     "~python-2.7.5+<2.8",
     "~qt-5.6.1+<5.7",
     "~pyqt-5.6",
-    "~pyside-2.0,
+    "~pyside-2.0",
     "~numpy-1.12.1",
     "~openexr-2.2",
     "~ptex-2.1.28",
@@ -29,4 +30,4 @@ requires = [
     "~mkl-0.12"
 ]
 
-uuid = "repository.vfx_reference_platform"
+uuid = "repository.vfx_platform_bundle"

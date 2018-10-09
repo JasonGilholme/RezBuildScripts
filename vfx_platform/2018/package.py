@@ -1,6 +1,8 @@
-name = "rez_docker"
+name = "vfx_platform"
 
-version = "0.0.0"
+version = "2018"
+
+description = "Containerised build environment for the vfx reference platform"
 
 authors = [
     "jason.gilholme"
@@ -8,9 +10,7 @@ authors = [
 
 private_build_requires = ["python"]
 
-description = "Python utils to build rez packages in a docker container"
-
-uuid = "repository.rez_docker"
+uuid = "repository.vfx_platform"
 
 def commands():
     env.PATH.append("{root}/bin")
