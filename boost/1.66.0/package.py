@@ -11,8 +11,6 @@ description = \
     Peer-reviewed portable C++ source libraries.
     """
 
-private_build_requires = ['rez_docker']
-
 @early()
 def variants():
     from rez.package_py_utils import expand_requires

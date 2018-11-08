@@ -23,5 +23,14 @@ RUN yum install -y xcb-util-*
 
 RUN yum install -y which
 
+RUN yum install -y libXi-devel libXmu-devel
+
+RUN yum install -y libXrandr-devel
+RUN yum install -y libXinerama-devel
+RUN yum install -y libXcursor-devel
+RUN yum install -y libtiff-devel
+RUN yum install -y libpng-devel
+RUN yum install -y libjpeg-turbo-devel
+
 COPY ./build_script.sh /build_script.sh
 ENTRYPOINT /build_script.sh

@@ -11,13 +11,11 @@ description = \
     Data model, library, and file format for storing and managing data.
     """
 
-build_requires = [
-    #"gcc-4.8.2"
-]
-
-variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04"]
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
+    return [expand_requires(*requires)]
 
 tools = [
     "gif2h5"

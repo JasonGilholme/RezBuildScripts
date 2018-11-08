@@ -12,11 +12,11 @@ description = \
     """
 
 requires = [
-    "boost-1.55",
-    "tbb-4.3",
+    "boost-1.61",
+    "tbb-2017.6",
     "double_conversion-1.1",
     "openexr-2.2",
-    "oiio-1.5",
+    "oiio-1.7",
     "glew-1.10",
     "opensubdiv-3",
     "ptex-2.0",
@@ -29,9 +29,11 @@ build_requires = [
     "ccache"
 ]
 
-variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-14.04"]
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
+    return [expand_requires(*requires)]
 
 uuid = "usd"
 

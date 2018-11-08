@@ -6,24 +6,19 @@ authors = [
     "Pixar"
 ]
 
-description = \
-    """
-    
-    """
+description = ""
 
-build_requires = [
-    "ninja"
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
+    return [expand_requires(*requires)]
 
-variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"],
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-17.04"]
-]
 requires = [
-	'glew-1',
-	'glfw-3',
-	'tbb-4.3',
-	'ptex-2'
+    'glew-1',
+    'glfw-3',
+    'tbb-2017.6',
+    # 'ptex-2'
 ]
 
 uuid = "repository.opensubdiv"

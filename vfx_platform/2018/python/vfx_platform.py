@@ -2,7 +2,15 @@ import os
 import subprocess
 
 
-def build(package_name, remote_source_archive_url, cmake_file, install_dir, rez_repo_dir=None, build_uid=None, build_gid=None):
+def build(
+        package_name, 
+        remote_source_archive_url, 
+        cmake_file, 
+        install_dir, 
+        rez_repo_dir=None, 
+        build_uid=None, 
+        build_gid=None,
+        additional_build_files=()):
     rez_repo_dir = rez_repo_dir or os.environ.get("REZ_REPO_PAYLOAD_DIR")
     if not rez_repo_dir:
         raise Exception("Please provide rez_repo_dir argument or set the REZ_REPO_PAYLOAD_DIR environment variable!")
@@ -16,6 +24,7 @@ def build(package_name, remote_source_archive_url, cmake_file, install_dir, rez_
     source_archive_name = os.path.basename(remote_source_archive_url)
     local_source_archive_dir = os.path.join(rez_repo_dir, package_name)
     local_source_archive_url = os.path.join(rez_repo_dir, package_name, source_archive_name)
+    source_archive_dir = os.path.join('/docker_build/src', package_name)
 
     if not os.path.isfile(local_source_archive_url):
         source_archive_url = remote_source_archive_url
@@ -29,7 +38,7 @@ def build(package_name, remote_source_archive_url, cmake_file, install_dir, rez_
 
     # Add env vars
     cmd += "-e CMAKE_URL=%s " % (source_archive_url,)
-    cmd += "-e CMAKE_DOWNLOAD_DIR=%s " % (local_source_archive_dir,)
+    cmd += "-e CMAKE_DOWNLOAD_DIR=%s " % (source_archive_dir,)
     cmd += "-e BUILD_UID=%s " % (build_uid,)
     cmd += "-e BUILD_GID=%s " % (build_gid,)
 
@@ -37,6 +46,8 @@ def build(package_name, remote_source_archive_url, cmake_file, install_dir, rez_
     cmd += "-v %s:/docker_build/src " % (rez_repo_dir,)
     cmd += "-v %s:/docker_build/out " % (install_dir,)
     cmd += "-v %s:/docker_build/CMakeLists.txt " % (cmake_file,)
+    for build_file in additional_build_files:
+        cmd += "-v %s:/docker_build/%s " % (build_file, os.path.basename(build_file))
 
     # Add rez package volumes
     rez_package_dirs = os.environ.get('REZ_PACKAGES_PATH', '').split(':')

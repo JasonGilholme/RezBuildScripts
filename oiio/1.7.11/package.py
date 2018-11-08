@@ -14,14 +14,17 @@ description = \
 build_requires = []
 
 requires = [
-	"openexr-2.2",
-	"glew-1",
-	"boost-1.63"
+    "openexr-2.2",
+    "glew-1",
+    "boost-1.61",
+    "python-2.7",
 ]
 
-variants = [
-    ["platform-linux", "arch-x86_64", "os-Ubuntu-16.04"]
-]
+@early()
+def variants():
+    from rez.package_py_utils import expand_requires
+    requires = ["platform-**", "arch-**", "vfx_platform-2018"]
+    return [expand_requires(*requires)]
 
 uuid = "repository.oiio"
 

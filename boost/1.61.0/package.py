@@ -11,12 +11,10 @@ description = \
     Peer-reviewed portable C++ source libraries.
     """
 
-private_build_requires = ['rez_docker']
-
 @early()
 def variants():
     from rez.package_py_utils import expand_requires
-    requires = ["platform-**", "arch-**", "python-2.7.15"]
+    requires = ["platform-**", "arch-**", "vfx_platform-2018", "python-2.7.15"]
     return [expand_requires(*requires)]
 
 uuid = "repository.boost"
